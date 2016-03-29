@@ -1,0 +1,96 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "City of Surrey Traffic Loop Count API.",
+        "description": "This API provides locations of City of Surrey traffic loops and the corresponding traffic loop counts in 15 minute intervals. While the counts are broken up by 15 minute intervals, the data is currently loaded only once per day.  We are hoping to increase this frequency to at least once every hour.",
+        "version": "0.1",
+        "license": {
+            "name": "Open Government License - British Columbia",
+            "url": "http://www.data.gov.bc.ca/local/dbc/docs/license/OGL-vbc2.0.pdf"
+        },
+        "termsOfService": "http://www.data.gov.bc.ca/local/dbc/docs/license/API_Terms_of_Use.pdf",
+        "contact": {
+            "name": "City of Surrey GIS Section",
+            "url": "http://data.surrey.ca",
+            "email": "opendata@surrey.ca"
+        }
+    },
+    "tags": [
+        {
+            "name": "traffic"
+        },
+        {
+            "name": "count"
+        },
+        {
+            "name": "induction"
+        },
+        {
+            "name": "volume"
+        },
+        {
+            "name": "intersection"
+        },
+        {
+            "name": "transportation"
+        }
+    ],
+    "host": "gis.surrey.ca:8080",
+    "basePath": "/fmedatastreaming/TrafficLoopCount",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/TrafficLoops.fmw": {
+            "get": {
+                "description": "Provides all the traffic loops maintained by the City of Surrey in GeoJSON format. It accepts one optional parameter which is the EPSG code for the desired projection.",
+                "tags": [
+                    "loops"
+                ],
+                "parameters": [
+                    {
+                        "name": "proj_epsg",
+                        "in": "query",
+                        "description": "The output projection EPSG code.  Eg. WGS84 is 4326 and NAD 83 UTM Zone 10 is 26910.  For more on EPSG codes please see http://spatialreference.org/",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "City of Surrey Traffic Loops"
+                    }
+                }
+            }
+        },
+        "/TrafficLoopCounts.fmw": {
+            "get": {
+                "description": "Provides traffic loop counts for the selected time interval.",
+                "tags": [
+                    "counts"
+                ],
+                "parameters": [
+                    {
+                        "name": "startdatetime",
+                        "in": "query",
+                        "description": "Beginning of the required date/time range in YYYYMMDDHHMISS format using a 24 hour clock. For example March 24 2016 at 1:00 PM would be 20160325130000.",
+                        "type": "number"
+                    },
+                    {
+                        "name": "enddatetime",
+                        "in": "query",
+                        "description": "End of the required date/time range. For the format please see the startdatetime parameter.",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "City of Surrey Traffic Loops"
+                    }
+                }
+            }
+        }
+    }
+}
