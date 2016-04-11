@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "City of Surrey Traffic Loop Count API.",
-        "description": "This API provides locations of City of Surrey traffic loops and the corresponding traffic loop counts in 15 minute intervals. While the counts are broken up by 15 minute intervals, the data is currently loaded only once per day.  We are hoping to increase this frequency to at least once every hour.",
+        "description": "This API provides locations of City of Surrey traffic loops and the corresponding traffic loop counts in 15 minute intervals. While the counts are broken up by 15 minute intervals, the data is currently loaded only once per day.  We are hoping to increase this frequency to at least once every hour. The LOOP_ID field is common to both datasets and can be used to cross-reference them.",
         "version": "0.1",
         "license": {
             "name": "Open Government License - British Columbia",
@@ -67,7 +67,7 @@
         },
         "/TrafficLoopCounts.fmw": {
             "get": {
-                "description": "Provides traffic loop counts for the selected time interval.",
+                "description": "Provides traffic loop counts for the selected time interval. The LOOP_ID and DATETIME combinations are unique in the output.",
                 "tags": [
                     "counts"
                 ],
@@ -75,19 +75,19 @@
                     {
                         "name": "startdatetime",
                         "in": "query",
-                        "description": "Beginning of the required date/time range in YYYYMMDDHHMISS format using a 24 hour clock. For example March 24 2016 at 1:00 PM would be 20160325130000.",
+                        "description": "Beginning of the required date/time range in YYYYMMDDHHMISS format using a 24 hour clock. The time is local time, either -8 (PST) or -7 (PDT) depending on whether daylight savings time is currently being observed. For example March 24 2016 at 1:00 PM would be 20160325130000.",
                         "type": "number"
                     },
                     {
                         "name": "enddatetime",
                         "in": "query",
-                        "description": "End of the required date/time range. For the format please see the startdatetime parameter.",
+                        "description": "End of the required date/time range. For details see the startdatetime parameter.",
                         "type": "number"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "City of Surrey Traffic Loops"
+                        "description": "City of Surrey Traffic Loop Counts"
                     }
                 }
             }
