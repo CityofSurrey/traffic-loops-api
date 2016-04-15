@@ -67,7 +67,7 @@
         },
         "/TrafficLoopCounts.fmw": {
             "get": {
-                "description": "Provides traffic loop counts for the selected time interval. The LOOP_ID and DATETIME combinations are unique in the output.",
+                "description": "Provides traffic loop counts for the input time interval. The LOOP_ID and DATETIME combinations are unique in the output. The output timestamp will contain the time zone offset, either -08 (PST) or -07 (PDT) depending on whether daylight savings time was observed at the output datetime. In order to work with local time you may omit the time zone offset from the input and truncate it from the output.",
                 "tags": [
                     "counts"
                 ],
