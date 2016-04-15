@@ -46,7 +46,7 @@
     "paths": {
         "/TrafficLoops.fmw": {
             "get": {
-                "description": "Provides all the traffic loops maintained by the City of Surrey in GeoJSON format. It accepts one optional parameter which is the EPSG code for the desired projection.",
+                "description": "Provides all the traffic loops maintained by the City of Surrey in GeoJSON format.",
                 "tags": [
                     "loops"
                 ],
@@ -54,7 +54,7 @@
                     {
                         "name": "proj_epsg",
                         "in": "query",
-                        "description": "The output projection EPSG code.  Eg. WGS84 is 4326 and NAD 83 UTM Zone 10 is 26910.  For more on EPSG codes please see http://spatialreference.org/",
+                        "description": "The output projection EPSG code.  Eg. WGS84 is 4326 and NAD 83 UTM Zone 10 is 26910.  If this is left blank, the default is 4326.  For more on EPSG codes please see http://spatialreference.org/",
                         "type": "number"
                     }
                 ],
@@ -75,7 +75,7 @@
                     {
                         "name": "startdatetime",
                         "in": "query",
-                        "description": "Beginning of the required date/time range in YYYYMMDDHHMISS format using a 24 hour clock. The time is local time, either -8 (PST) or -7 (PDT) depending on whether daylight savings time is currently being observed. For example March 24 2016 at 1:00 PM would be 20160325130000.",
+                        "description": "Beginning of the required date/time range in ISO 8601. For example March 24 2016 at 1:00 PM Pacific Standard Time would be 2016-03-24T13:00:00-08.",
                         "type": "number"
                     },
                     {
